@@ -1,0 +1,67 @@
+/*DESCRIPCION: PROTOTIPOS DE FUNCIONES BASICAS PARA EL INGRESO DE DATOS
+ *AUTOR: CARLOS LOPEZ
+ */
+
+#ifndef IODATA_H_
+#define IODATA_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/**
+ * \brief : Funcion para obtener un entero natural
+ * \param : *input puntero a entero
+ * \return : retorna un entero para control de ejecución
+ */
+int getNaturalNumber(int* input, char* message, char* error, int chances);
+
+/**
+ * \brief : Funcion para obtener y validar un numero con decimales
+ * \param : *input puntero a float
+ * \return : retorna un entero para control de ejecución
+ */
+int getFloatNumber(float* input, char* message, char* error, int chances);
+
+/**
+ * \brief : Funcion para obtener y validar un numero con signo
+ * \param : *input puntero a entero
+ * \return : retorna un entero para control de ejecución
+ */
+int getSignedNumber(int* input, char* message, char* error, int chances);
+
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+int getValidOption(int* input, char message[],char error[], int min, int max, int chances);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+void getAlphaNumericCuil(char* string, char* message, char* error);
+
+//FUNCIONES DE LETRAS Y MENSAJES
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+void getAlphaString(char* string, char* message, char* error);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+void getAlphaNumericString(char* string, char* message, char* error);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+void showMessage (char* message);
+
+
+#endif /* IODATA_H_ */

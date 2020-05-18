@@ -1,0 +1,78 @@
+/*DESCRIPCION: PROTOTIPOS DE FUNCIONES PARA EL MANEJO DE REPORTES
+ *AUTOR: CARLOS LOPEZ
+ */
+
+#ifndef REPORTS_H_
+#define REPORTS_H_
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#include "eCliente.h"
+#include "ePrestamo.h"
+#include "IOdata.h"
+
+/**
+ * \brief : Encuentra una posicion vacia en el array de prestamos (con el campo isEmpty en EMPTY
+ * \param ePrestamo* : puntero de array de prestamos
+ * \param arrayPLength*: longitud del array de prestamos.
+ * \param idCliente: entero con el id de cliente
+ * \return : retorna un entero en caso que se necesite controlar ejecucion
+ */
+int countPrestamosSaldadosCliente(ePrestamo* ePrestamoArray,int arrayPLength,int idCliente);
+
+
+int showMaxPrestamosSaldados(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength);
+
+int countPrestamosActivosCliente(ePrestamo* ePrestamoArray,int arrayPLength,int idCliente);
+
+int showMaxPrestamosActivos(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength);
+
+
+int countPrestamosActivosGivenAmount(ePrestamo* ePrestamoArray,int arrayPLength, float amount);
+
+
+void showCountPrestAmount(ePrestamo* ePrestamoArray, int arrayPLength);
+
+
+
+
+
+//int countPrestamosActivosGivenAmount(ePrestamo* ePrestamoArray,int arrayPLength, float amount);
+//void showCountPrestAmount(ePrestamo* ePrestamoArray, int arrayPLength);
+
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int showAlleCliente(eCliente data[], int arraylength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int showAllePrestamo(ePrestamo data[], int arraylength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int sorteCliente(eCliente data[], int arraylength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int sortePrestamo(ePrestamo data[], int arraylength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int showMaxePrestamo(ePrestamo data[], int arraylength);
+
+#endif /* REPORTS_H_ */

@@ -1,0 +1,41 @@
+/*
+ * linkerStructure.h
+ *
+ *  Created on: 14 May 2020
+ *      Author: Carlos
+ */
+
+#ifndef LINKERSTRUCTURE_H_
+#define LINKERSTRUCTURE_H_
+
+#define QTYLINKER 3
+#define EMPTY 0
+#define NON_EMPTY 1
+
+typedef struct{
+	char titulo1[51];
+	char titulo2[51];
+	int dias;
+	int precio;
+	int idEstructura2;
+	int idEstructura1;
+	int idPropio;
+	int isEmpty;
+}linkerStructure;
+
+
+void setLinkerStructureStatus(linkerStructure estructura2Array[], int arrayLength, int value);
+int generateIdlinkerStructure();
+char getConfirmationlinkerStructure(char* message);
+void showlinkerStructure(linkerStructure data[], int index, char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4);
+int setLinkerStructure(linkerStructure linkerStructureArray[], int arrayLenght1, estructura2 estructura2Array[], int arraylength2, estructura1 estructura1Array[], int arraylength3);
+int findEmptyPlaceLinkerStructure(linkerStructure linkerStructureArray[],int arrayLenght, int value);
+
+
+
+
+
+
+
+
+#endif /* LINKERSTRUCTURE_H_ */

@@ -1,0 +1,406 @@
+/*
+ * linkerStructure.c
+ *
+ *  Created on: 14 May 2020
+ *      Author: Carlos
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include "ePrestamo.h"
+#include "eCliente.h"
+#include "linkerStructure.h"
+#include "IOdata.h"
+
+
+int deleteMembereCliente(eCliente* eClienteArray, int arrayCLength, ePrestamo* ePrestamoArray,int arrayPLength)
+{
+	int retCode = -1;
+	int id;
+	int index;
+	int members;
+	char confirmation;
+
+	members = showListeCliente(eClienteArray,arrayCLength,"NOMBRE", "APELLIDO","CUIL", "ID");
+	if(members == -1)
+	{
+		showMessage("No hay miembros para cargados aun");
+		system("pause");
+	}else
+	{
+	getNaturalNumber(&id,"Ingrese el id del cliente que quiere dar de baja: ","Error. El Id solo puede ser numerico",3);
+	index = findeClienteById(eClienteArray,arrayCLength,id);
+
+	while(index == -1)
+		{
+			showMessage("Debe ingresar ID valido. Intente nuevamente: ");
+			showListeCliente(eClienteArray,arrayCLength,"NOMBRE", "APELLIDO","CUIL", "ID");
+			getNaturalNumber(&id,"\nIngrese el id que quiere dar de baja: ","\nError. El Id solo puede ser numerico",3);
+			index = findeClienteById(eClienteArray,arrayCLength,id);
+		}
+	showMessage("CLIENTE A SER DADO DE BAJA\n");
+	showeCliente(eClienteArray,index,"NOMBRE", "APELLIDO","CUIL", "ID");
+	showMessage("PRESTAMOS ASOCIADOS A ESTE CLIENTE\n");
+	showListePrestamoByClient(ePrestamoArray,arrayPLength, id,"IMPORTE", "CUOTAS","CUIT", "ID");
+	confirmation = getConfirmationeCliente("Ingrese 's' para confirmar la baja o 'n' para cancelar: ");
+	system("pause");
+	if(confirmation == 's')
+	{
+	deleteeClienteById(eClienteArray,arrayCLength,id);
+	deleteePrestamoByClienteId(ePrestamoArray,arrayPLength,id);
+	showMessage("BAJA PROCESADA CON EXITO\n");
+	retCode = 1;
+	}else
+	showMessage("LA BAJA HA SIDO CANCELADA\n");
+	}
+	return retCode;
+}
+
+
+int showListePrestamoByClient(ePrestamo* ePrestamoArray, int arrayPLength, int idCliente, char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4)
+{
+	int retCode = -1;
+	int i;
+	int emptyPlaces = 0;
+
+	for(i=0;i<arrayPLength;i++)
+	{
+		if(ePrestamoArray[i].isEmpty==EMPTY)
+		{
+			emptyPlaces ++;
+			continue;
+		}
+		else if(ePrestamoArray[i].idCliente == idCliente)
+		{
+		printf("%-20s|", fieldTitle1);
+		printf("%-40f|", ePrestamoArray[i].importe);
+		printf("%-20s|", fieldTitle2);
+		printf("%-40d|", ePrestamoArray[i].cuotas);
+		printf("%-10s|", fieldTitle3);
+		printf("%-10d|", ePrestamoArray[i].estado);
+		printf("%-5s|", fieldTitle4);
+		printf("%-5d|", ePrestamoArray[i].idPrestamo);
+		printf("\n");
+		}
+	}
+
+	if(emptyPlaces < arrayPLength)
+	{
+		showMessage("CLIENTE SIN PRESTAMOS ASOCIADOS");
+		retCode = 0;
+	}
+
+	return retCode;
+}
+
+
+int deleteePrestamoByClienteId(ePrestamo* ePrestamoArray,int arrayPLength, int id)
+{
+    int i;
+    int retCode = -1;
+
+    for(i = 0; i < arrayPLength; i++)
+    {
+        if(ePrestamoArray[i].idCliente == id && ePrestamoArray[i].isEmpty == NON_EMPTY)
+        {
+        	ePrestamoArray[i].isEmpty = EMPTY;
+        	//ePrestamoArray[i].estado =
+
+        	retCode = 0;
+        }
+    }
+    return retCode;
+}
+
+
+int modifyePrestamo(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength, int option)
+{
+	int retCode = -1;
+	int index;
+	int indexCliente;
+	int id;
+	int idcliente;
+	int members;
+	char confirmation;
+
+	members = showListePrestamo(ePrestamoArray,arrayPLength,"IMPORTE", "CUOTAS","ESTADO", "ID");
+
+	if(members == -1)
+	{
+		showMessage("No hay prestamos cargados aun");
+		system("pause");
+	}else
+	{
+
+	getNaturalNumber(&id,"Ingrese el id del prestamo","Error. El Id solo puede ser numerico",3);
+	index = findePrestamoById(ePrestamoArray,arrayPLength,id);
+
+	while(index == -1)
+	{
+		showMessage("Debe ingresar ID valido. Intente nuevamente: ");
+		showListePrestamo(ePrestamoArray,arrayPLength,"IMPORTE", "CUOTAS","CUIT", "ID");
+		getNaturalNumber(&id,"Ingrese el id a modificar: ","Error. El Id solo puede ser numerico",3);
+		index = findePrestamoById(ePrestamoArray,arrayPLength,id);
+	}
+
+	idcliente = ePrestamoArray[index].idCliente;
+	indexCliente = findeClienteById(eClienteArray,arrayCLength,idcliente);
+	showMessage("*** EL PRESTAMO PERTENECE AL CLIENTE: ****");
+	showeCliente(eClienteArray, indexCliente, "NOMBRE", "APELLIDO", "CUIL","ID DE CLIENTE");
+	showePrestamo(ePrestamoArray,arrayPLength,index,eClienteArray,indexCliente,arrayCLength,"IMPORTE","CUOTAS","NOMBRE","ID DE PRESTAMO");
+
+		if(option == 5)
+		{
+			confirmation = getConfirmationeCliente("Ingrese 's' para confirmar la operacion o 'n' para cancelar: ");
+			if(confirmation == 's')
+				{
+				setePrestamoEstado(ePrestamoArray,arrayPLength,SALDADO);
+				showMessage("El prestamo ha sido saldado!");
+				system("pause");
+				retCode = 1;
+				}
+			else
+				{
+				showMessage("Operacion cancelada!");
+				}
+
+		}else if(option == 6)
+		{
+			confirmation = getConfirmationeCliente("Ingrese 's' para confirmar la operacion o 'n' para cancelar: ");
+			if(confirmation == 's')
+				{
+				setePrestamoEstado(ePrestamoArray,arrayPLength,ACTIVO);
+				showMessage("El prestamo ha sido activado!");
+				system("pause");
+				retCode = 1;
+				}
+			else
+				{
+				showMessage("Operacion cancelada!");
+				}
+		}
+	}
+
+	return retCode;
+}
+
+void showePrestamo(ePrestamo* ePrestamoArray, int arrayPLength,int ePrestamoIndex, eCliente* eClienteArray,int eClienteIndex, int arrayCLength , char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4)
+{
+		char pipe =' ';
+
+		printf("****************************************|\n");
+		printf("%-40s|\n", fieldTitle1);
+		printf("%-40c|\n", pipe);
+		printf("%-40f|\n", ePrestamoArray[ePrestamoIndex].importe);
+		printf("****************************************|\n");
+		printf("%-40s|\n", fieldTitle2);
+		printf("%-40c|\n", pipe);
+		printf("%-40d|\n", ePrestamoArray[ePrestamoIndex].cuotas);
+		printf("****************************************|\n");
+		printf("%-40s|\n", fieldTitle3);
+		printf("%-40c|\n", pipe);
+		printf("%-40s|\n", eClienteArray[eClienteIndex].nombre);
+		printf("****************************************|\n");
+		printf("%-40s|\n", fieldTitle4);
+		printf("%-40c|\n", pipe);
+		printf("%-40d|\n", ePrestamoArray[ePrestamoIndex].idPrestamo);
+		printf("****************************************|\n");
+
+
+}
+
+
+
+int setePrestamo(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength)
+{
+		int retCode = -1;
+		int index = findEmptyPlaceePrestamo(ePrestamoArray, QTYPRESTAMO,EMPTY);
+		int indexCliente;
+		int idCliente;
+
+		if(index == -1)
+		{
+			showMessage("\nNo hay lugares disponibles.");
+		}
+		else
+		{
+
+			showMessage("\n   ALTA DE PRESTAMOS   \n   LISTA DE CLIENTES   ");
+			showListeCliente(eClienteArray,arrayCLength,"NOMBRE","APELLIDO","CUIL","ID");
+			getNaturalNumber(&idCliente,"Ingrese el id del cliente que solicita el prestamo: ","Error. El Id solo puede ser numerico",3);
+			indexCliente = findeClienteById(eClienteArray,arrayCLength,idCliente);
+			while(indexCliente == -1)
+			{
+				showMessage("Debe ingresar ID valido. Intente nuevamente: ");
+				showListeCliente(eClienteArray,arrayCLength,"NOMBRE", "APELLIDO","CUIL", "ID");
+				getNaturalNumber(&idCliente,"Ingrese el id a modificar: ","Error. El Id solo puede ser numerico",3);
+				index = findeClienteById(eClienteArray,arrayCLength,idCliente);
+			}
+
+			getFloatNumber(&ePrestamoArray[index].importe, "\nIngrese el importe: ", "\nError. El importe solo debe contener letras.",3);
+			getNaturalNumber(&ePrestamoArray[index].cuotas, "\nIngrese la cuotas: ","\nError.Las cuotas solo pueden contener numeros",3);
+			ePrestamoArray[index].idPrestamo = generateIdePrestamo();
+			ePrestamoArray[index].isEmpty = NON_EMPTY;
+			ePrestamoArray[index].idCliente = idCliente ;
+			ePrestamoArray[index].estado = ACTIVO;
+			showMessage("\nAlta dada con exito!!");
+			showePrestamo(ePrestamoArray,arrayPLength,index,eClienteArray,indexCliente,arrayCLength,"IMPORTE","CUOTAS","NOMBRE","ID DE PRESTAMO");
+			system("pause");
+			retCode = 1;
+		}
+
+		return retCode;
+}
+
+int countActive(ePrestamo* ePrestamoArray, int arrayPLength, int idCliente)
+{
+	int i;
+	int contPrestamosActivos = 0;
+
+	for(i=0; i<arrayPLength;i++)
+	{
+		if(ePrestamoArray[i].isEmpty == NON_EMPTY && ePrestamoArray[i].estado == ACTIVO && ePrestamoArray[i].idCliente == idCliente)
+		{
+			contPrestamosActivos++;
+		}
+	}
+	return contPrestamosActivos;
+}
+
+int showListeClientePrestamosActivos(eCliente* eClienteArray, int arrayCLength,ePrestamo* ePrestamoArray, int arrayPLength)
+{
+	int retCode = -1;
+	//int i;
+//	int emptyPlaces = 0;
+//	int countActiveP;
+	int members;
+	int clientePrestamosActivos;
+//	int id;
+
+	members = checkIfEmptyeCliente(eClienteArray,arrayCLength);
+		if(members == -1)
+		{
+			showMessage("No hay clientes cargados aun!");
+			system("pause");
+		}else
+		{
+			clientePrestamosActivos = showListeClienteActivo(eClienteArray,arrayCLength,ePrestamoArray,arrayPLength,"NOMBRE", "APELLIDO","CUIL","ID CLIENTE","CANT PREST ACTIVOS");
+			if(clientePrestamosActivos == -1)
+			{
+				showMessage("No hay clientes con prestamos activos");
+				system("pause");
+			}
+			else
+			{
+				system("pause");
+				retCode = 1;
+			}
+		}
+
+	return retCode;
+}
+
+
+int showListeClienteActivo(eCliente* eClienteArray, int arrayCLength, ePrestamo* ePrestamoArray, int arrayPLength, char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4, char* fieldTitle5)
+{
+	int retCode = -1;
+	int i;
+	//int emptyPlaces = 0;
+	int countActiveP  = 0;
+	int idCliente;
+
+	for(i=0;i<arrayCLength;i++)
+	{
+		if(eClienteArray[i].isEmpty==EMPTY)
+		{
+			continue;
+		}
+		else
+		{
+			idCliente = eClienteArray[i].ideCliente;
+			countActiveP = countActive(ePrestamoArray,arrayPLength,idCliente);
+			if(countActiveP > 0)
+				{
+				printf("%-20s|", fieldTitle1);
+				printf("%-30s|", eClienteArray[i].nombre);
+				printf("%-20s|", fieldTitle2);
+				printf("%-30s|", eClienteArray[i].apellido);
+				printf("%-10s|", fieldTitle3);
+				printf("%-15s|", eClienteArray[i].cuil);
+				printf("%-5s|", fieldTitle4);
+				printf("%-5d|\n", eClienteArray[i].ideCliente);
+				printf("%-20s|", fieldTitle5);
+				printf("%-5d|", countActiveP);
+				printf("\n");
+				}
+		}
+	}
+
+	if(countActiveP > 0)
+	{
+	retCode = 1;
+	}
+
+	return retCode;
+}
+
+void showePrestamoList(ePrestamo* ePrestamoArray, int arrayPLength,int ePrestamoIndex, eCliente* eClienteArray,int eClienteIndex, int arrayCLength , char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4)
+{
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,52 @@
+/*
+ * reports.h
+ *
+ *  Created on: 13 May 2020
+ *      Author: Carlos
+ */
+
+#ifndef REPORTS_H_
+#define REPORTS_H_
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#include "eCliente.h"
+#include "ePrestamo.h"
+#include "IOdata.h"
+
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+int showAlleCliente(eCliente data[], int arraylength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+int showAllePrestamo(ePrestamo data[], int arraylength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+int sorteCliente(eCliente data[], int arraylength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+int sortePrestamo(ePrestamo data[], int arraylength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+int showMaxePrestamo(ePrestamo data[], int arraylength);
+
+#endif /* REPORTS_H_ */

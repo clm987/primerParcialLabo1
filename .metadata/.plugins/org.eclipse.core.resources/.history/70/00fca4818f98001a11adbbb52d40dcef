@@ -1,0 +1,128 @@
+/*
+ * genericStructure2.h
+ *
+ *  Created on: 13 May 2020
+ *      Author: Carlos
+ */
+
+#ifndef EPRESTAMO_H_
+#define EPRESTAMO_H_
+
+#define QTYPRESTAMO 3
+#define ACTIVO 1
+#define SALDADO 0
+#define EMPTY 0
+#define NON_EMPTY 1
+
+
+typedef struct{
+	float importe;
+	int cuotas;
+	int estado;
+	int idPrestamo;
+	int idCliente;
+	int isEmpty;
+}ePrestamo;
+
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+void setePrestamoStatus(ePrestamo* ePrestamoArray, int arrayPLength, int value);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+int findEmptyPlaceePrestamo(ePrestamo* ePrestamoArray,int arrayPLength, int value);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int setePrestamo(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+int generateIdePrestamo();
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+int findePrestamoById(ePrestamo* ePrestamoArray,int arrayPLength, int id);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//*********************int findePrestamoByIdExterno(ePrestamo ePrestamoArray[],int arrayLenght, int id);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int modifyePrestamo(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength, int option);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+int showListePrestamo(ePrestamo* ePrestamoArray, int arrayPLength, char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int deleteMemberePrestamo(ePrestamo arrayEstructura1[], int arraylength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int deleteePrestamoById(ePrestamo ePrestamoArray[],int arrayLenght, int id);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+char getConfirmationePrestamo(char* message);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int findePrestamoByText(ePrestamo ePrestamoArray[],int arrayLenght, char* text);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int sortePrestamoByTextField(ePrestamo ePrestamoArray[],int arrayLength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int checkIfEmptyePrestamo(ePrestamo ePrestamoArray[],int arrayLength);
+/**
+ * \brief : recibe un puntero a char con un mensaje y lo muestra con el formato estadarizado.
+ * \param : *mensajes puntero a char con el mensaje que se mostrará al usuario.
+ * \return : esta funcion no retorna nada.
+ */
+//int findMaxNumber(ePrestamo ePrestamoArray[],int arrayLength);
+
+void setePrestamoEstado(ePrestamo* ePrestamoArray, int arrayPLength, int value);
+
+int checkIfEmptyePrestamo(ePrestamo* ePrestamoArray,int arrayPLength);
+
+#endif /* EPRESTAMO_H_ */

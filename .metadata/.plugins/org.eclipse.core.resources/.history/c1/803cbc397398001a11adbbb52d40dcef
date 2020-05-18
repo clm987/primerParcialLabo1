@@ -1,0 +1,52 @@
+/*
+ * linkerStructure.h
+ *
+ *  Created on: 14 May 2020
+ *      Author: Carlos
+ */
+
+#ifndef LINKERSTRUCTURE_H_
+#define LINKERSTRUCTURE_H_
+
+#define QTYLINKER 3
+#define EMPTY 0
+#define NON_EMPTY 1
+
+typedef struct{
+	char titulo1[51];
+	char titulo2[51];
+	int dias;
+	int precio;
+	int idEstructura2;
+	int idEstructura1;
+	int idPropio;
+	int isEmpty;
+}linkerStructure;
+
+int deleteMembereCliente(eCliente* eClienteArray, int arrayCLength, ePrestamo* ePrestamoArray, int arrayPLength);
+
+int showListePrestamoByClient(ePrestamo* ePrestamoArray, int arrayPLength, int idCliente, char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4);
+
+int modifyePrestamo(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength, int option);
+
+
+int setePrestamo(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength);
+
+void showePrestamo(ePrestamo* ePrestamoArray, int arrayPLength,int ePrestamoIndex, eCliente* eClienteArray,int eClienteIndex, int arrayCLength , char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4);
+
+int deleteePrestamoByClienteId(ePrestamo* ePrestamoArray,int arrayPLength, int id);
+int showListeClienteActivo(eCliente* eClienteArray, int arrayCLength, ePrestamo* ePrestamoArray, int arrayPLength, char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4, char* fieldTitle5);
+
+int showListeClientePrestamosActivos(eCliente* eClienteArray, int arrayCLength,ePrestamo* ePrestamoArray, int arrayPLength, char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4);
+
+int countActive(ePrestamo* ePrestamoArray, int arrayPLength, int idCliente);
+
+
+
+
+
+
+
+
+
+#endif /* LINKERSTRUCTURE_H_ */

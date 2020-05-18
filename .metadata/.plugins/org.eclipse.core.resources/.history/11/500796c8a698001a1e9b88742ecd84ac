@@ -1,0 +1,67 @@
+/*DESCRIPCION: PROTOTIPOS DE FUNCIONES PARA EL MANEJO DE ALGORITMOS QUE RELACIONAN LAS ESTRUCTURAS eCliente y ePrestamo
+ *AUTOR: CARLOS LOPEZ
+ */
+
+#ifndef LINKERSTRUCTURE_H_
+#define LINKERSTRUCTURE_H_
+
+#define QTYLINKER 3
+#define EMPTY 0
+#define NON_EMPTY 1
+
+/**
+ * \brief : Permite dar de baja un cliente
+ * \param ePrestamo* : puntero de array de prestamos
+ * \param arrayPLength: longitud del array de prestamos.
+ * \param eCliente* : puntero de array de prestamos
+ * \param arrayCLength: longitud del array de prestamos.
+ * \return : retorna un entero en caso que se necesite controlar ejecucion
+ */
+int deleteMembereCliente(eCliente* eClienteArray, int arrayCLength, ePrestamo* ePrestamoArray, int arrayPLength);
+
+/**
+ * \brief : muestra el cliente con mayor cantidad de prestamos saldados
+ * \param ePrestamo* : puntero de array de prestamos
+ * \param arrayPLength*: longitud del array de prestamos.
+ * \param eCliente* : puntero de array de prestamos
+ * \param arrayCLength: longitud del array de prestamos.
+ * \param fieldTitle1:puntero a char con mensaje a ser utilizado como titulo
+ * \param fieldTitle2:puntero a char con mensaje a ser utilizado como titulo
+ * \param fieldTitle3:puntero a char con mensaje a ser utilizado como titulo
+ * \param fieldTitle4:puntero a char con mensaje a ser utilizado como titulo
+ * \return : retorna un entero en caso que se necesite controlar ejecucion
+ */
+int showListePrestamoByClient(ePrestamo* ePrestamoArray, int arrayPLength, int idCliente, char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4);
+
+/**
+ * \brief : Permite modificar el estado de un prestamo
+ * \param ePrestamo* : puntero de array de prestamos
+ * \param arrayPLength: longitud del array de prestamos.
+ * \param eCliente* : puntero de array de prestamos
+ * \param arrayCLength: longitud del array de prestamos.
+ * \return : retorna un entero en caso que se necesite controlar ejecucion
+ */
+int modifyePrestamo(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength, int option);
+
+
+int setePrestamo(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength);
+
+void showePrestamo(ePrestamo* ePrestamoArray, int arrayPLength,int ePrestamoIndex, eCliente* eClienteArray,int eClienteIndex, int arrayCLength , char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4);
+
+int deleteePrestamoByClienteId(ePrestamo* ePrestamoArray,int arrayPLength, int id);
+int showListeClienteActivo(eCliente* eClienteArray, int arrayCLength, ePrestamo* ePrestamoArray, int arrayPLength, char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4, char* fieldTitle5);
+
+int showListeClientePrestamosActivos(eCliente* eClienteArray, int arrayCLength,ePrestamo* ePrestamoArray, int arrayPLength);
+
+int countActive(ePrestamo* ePrestamoArray, int arrayPLength, int idCliente);
+
+void showListePrestamoActivo(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength , char* fieldTitle1, char* fieldTitle2, char* fieldTitle3,char* fieldTitle4,char* fieldTitle5);
+
+
+
+
+
+
+
+
+#endif /* LINKERSTRUCTURE_H_ */

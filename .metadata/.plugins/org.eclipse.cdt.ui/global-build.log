@@ -1,0 +1,4 @@
+23:51:46 **** Incremental Build of configuration Debug for project PParcialLabo1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\PParcialLabo1.o" "..\\src\\PParcialLabo1.c" 
+gcc -o PParcialLabo1.exe "src\\IOdata.o" "src\\PParcialLabo1.o" "src\\eCliente.o" "src\\ePrestamo.o" "src\\linkerStructure.o" "src\\reports.o" 
