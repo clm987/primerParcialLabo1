@@ -337,6 +337,7 @@ void getAlphaNumericCuil(char* string, char* message, char* error)
     	printf("\n%s", error);
     	fflush(stdin);
         fgets(buffer, sizeof(buffer), stdin);
+        length = strlen(buffer);
         buffer[strlen(buffer)-1] = '\0';
     }
 

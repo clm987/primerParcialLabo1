@@ -91,4 +91,8 @@ void setePrestamoEstado(ePrestamo* ePrestamoArray, int arrayPLength, int value);
  */
 int checkIfEmptyePrestamo(ePrestamo* ePrestamoArray,int arrayPLength);
 
+void hardCodeFunctionPrestamo(ePrestamo* ePrestamoArray, int index, float importeTest, int cuotasTest, int estadoTest, int idPrestamoTest, int idClienteTest, int isEmptyTest);
+
+
+
 #endif /* EPRESTAMO_H_ */

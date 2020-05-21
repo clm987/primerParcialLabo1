@@ -70,5 +70,17 @@ int countPrestamosActivosGivenAmount(ePrestamo* ePrestamoArray,int arrayPLength,
  */
 void showCountPrestAmount(ePrestamo* ePrestamoArray, int arrayPLength);
 
+int showMaxPrestamosAlta(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength);
+
+int countPrestamosAlta(ePrestamo* ePrestamoArray,int arrayPLength,int idCliente);
+
+int showMaxPrestamos12Cuotas(ePrestamo* ePrestamoArray, int arrayPLength, eCliente* eClienteArray, int arrayCLength);
+
+int countPrestamosSaldados12(ePrestamo* ePrestamoArray,int arrayPLength);
+
+int countPrestamosActivosPorCuotas(ePrestamo* ePrestamoArray,int arrayPLength, int cuotas);
+
+void showCountPrestCuotas(ePrestamo* ePrestamoArray, int arrayPLength);
+
 
 #endif /* REPORTS_H_ */

@@ -28,6 +28,7 @@ int findEmptyPlace(eCliente* eClienteArray,int arrayClenght, int value)
     	if(eClienteArray[i].isEmpty == value)
     	{
     		retCode = i;
+    		//break;
     	}
     }
     return retCode;
@@ -266,5 +267,17 @@ int checkIfEmptyeCliente(eCliente* eClienteArray ,int arrayCLength)
 
     return retCode;
 }
+
+void hardCodeFunctionCliente(eCliente* eClienteArray, int index, char* apellidoTest, char* nombreTest, char* cuilTest, int ideClienteTest, int isEmptyTest)
+{
+
+	strcpy(eClienteArray[index].apellido ,apellidoTest);
+	strcpy(eClienteArray[index].nombre ,nombreTest);
+	strcpy(eClienteArray[index].cuil ,cuilTest);
+	eClienteArray[index].ideCliente = ideClienteTest;
+	eClienteArray[index].isEmpty = isEmptyTest;
+
+}
+
 
 

@@ -116,4 +116,6 @@ char getConfirmationeCliente(char* message);
  */
 int checkIfEmptyeCliente(eCliente* eClienteArray ,int arrayCLength);
 
+void hardCodeFunctionCliente(eCliente* eClienteArray, int index, char* apellidoTest, char* nombreTest, char* cuilTest, int ideClienteTest, int isEmptyTest);
+
 #endif /* ECLIENTE_H_ */

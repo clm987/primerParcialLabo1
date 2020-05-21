@@ -16,7 +16,9 @@ void setePrestamoStatus(ePrestamo* ePrestamoArray, int arrayPLength, int value)
 	for(i=0; i<arrayPLength; i++)
 	{
 		ePrestamoArray[i].isEmpty = value;
+		ePrestamoArray[i].idCliente = 0;
 	}
+
 }
 
 int findEmptyPlaceePrestamo(ePrestamo* ePrestamoArray,int arrayPLength, int value)
@@ -28,6 +30,7 @@ int findEmptyPlaceePrestamo(ePrestamo* ePrestamoArray,int arrayPLength, int valu
     	if(ePrestamoArray[i].isEmpty == value)
     	{
     		retCode = i;
+    		//break;
     	}
     }
     return retCode;
@@ -123,4 +126,15 @@ int checkIfEmptyePrestamo(ePrestamo* ePrestamoArray,int arrayPLength)
     	retCode = 1;
     }
     return retCode;
+}
+
+void hardCodeFunctionPrestamo(ePrestamo* ePrestamoArray, int index, float importeTest, int cuotasTest, int estadoTest, int idPrestamoTest, int idClienteTest, int isEmptyTest)
+{
+	ePrestamoArray[index].importe = importeTest;
+	ePrestamoArray[index].cuotas = cuotasTest;
+	ePrestamoArray[index].estado = estadoTest;
+	ePrestamoArray[index].idPrestamo = idPrestamoTest;
+	ePrestamoArray[index].idCliente = idClienteTest;
+	ePrestamoArray[index].isEmpty = isEmptyTest;
+
 }
